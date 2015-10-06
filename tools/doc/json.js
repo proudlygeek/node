@@ -215,7 +215,8 @@ function processList(section) {
   // shove the name in there for properties, since they are always
   // just going to be the value etc.
   if (section.type === 'property' && values[0]) {
-    values[0].textRaw = '`' + section.name + '` ' + values[0].textRaw;
+    //values[0].textRaw = '`' + section.name + '` ' + values[0].textRaw;
+    values[0].textRaw = section.textRaw;
   }
 
   // now pull the actual values out of the text bits.

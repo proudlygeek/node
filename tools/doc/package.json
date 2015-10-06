@@ -2,14 +2,22 @@
   "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
   "name": "node-doc-generator",
   "description": "Internal tool for generating Node.js API docs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
     "node": ">=0.6.10"
   },
+  "scripts": {
+    "test": "lab -v"
+  },
   "dependencies": {
+    "algoliasearch": "^3.8.1",
+    "async": "^1.4.2",
+    "cheerio": "^0.19.0",
     "marked": "~0.1.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "lab": "~5.2.1"
+  },
   "optionalDependencies": {},
   "bin": "./generate.js"
 }

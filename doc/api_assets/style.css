@@ -435,13 +435,278 @@ td > *:last-child {
   margin-bottom: 0;
 }
 
-/* simpler clearfix */
-.clearfix:after {
-  content: ".";
+/****************/
+
+.search-wrapper {
+  margin: 15px 0;
+  width: 100%;
+  position: relative;
+}
+
+.search-wrapper__input {
+  padding: 10px 20px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 18px;
+
+  transition: border-color .09s ease-out;
+}
+
+.search-wrapper__input:focus {
+  outline: none;
+  border-color: #fe5211;
+}
+
+.search-wrapper__icon {
+  background: url(/assets/search_icon.png) transparent no-repeat;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 50%;
+  margin-top: -9.5px;
+  right: 12px;
+}
+
+.search-wrapper--not-empty .search-wrapper__icon {
+  background: url(/assets/cross_icon.png) transparent no-repeat;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.algolia-autocomplete {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+  position: absolute;
+  top: 43px;
+  border: 1px solid #CCCCCC;
+  width: 100%;
+  z-index: 200;
+  box-sizing: border-box;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: none;
+  background-color: #fff;
+  font-weight: bold;
+  transition: all 0.1s;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
   display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+  padding: 15px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  color: inherit;
+  border-top: solid 1px #F2F5F0;
+}
+
+.search-wrapper--not-empty .algolia-autocomplete .aa-dropdown-menu {
+  opacity: 1;  
+  transform: translateY(0px);
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #F2F5F0;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+  font-weight: bold;
+  color: #FF6800;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title:after {
+  text-align: center;
+  font-size: 12px;
+  display: inline-block;
+} 
+
+.algolia-autocomplete .aa-suggestion .type__breadcrumb {
+  color: #777;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.algolia-autocomplete .aa-suggestion .type__breadcrumb span {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-suggestion .last {
+  display: block;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title:after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -10px;
+  width: 52px;
+  color: #fff;
+  border-radius: 3px;
+  line-height: 0;
+  padding: 10px 5px;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title {
+  position: relative;
+  padding-right: 90px;
+}
+
+.algolia-autocomplete .aa-suggestion .last {
+  color: #000;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title .type:after {
+  display: none;  
+}
+
+.algolia-autocomplete .aa-suggestion .type__description {
+  font-size: 13px;
+  font-weight: normal;
+  padding: 5px 10px;
+  border-left: 2px solid #777;
+  margin-top: 6px;
+  margin-left: 10px;
+  padding-right: 85px;
+  overflow: hidden;
+  color: #7A7A7A;
+}
+
+.type__breadcrumb .type--left:hover {
+  text-decoration: underline;
+}
+
+.type__breadcrumb .type--misc:hover {
+  color: #edb92e;
+}
+
+.type__breadcrumb .type--global:hover {
+  color: #edb92e;
+}
+
+.type__breadcrumb .type--module:hover {
+  color: #f85931;
+}
+
+.type__breadcrumb .type--method:hover {
+  color: #a3a948;
+}
+
+.type__breadcrumb .type--class:hover {
+  color: #845bad;
+}
+
+.algolia-autocomplete .aa-suggestion .stability--deprecated {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title.type--misc:after {
+  content: 'Misc';
+  background-color: #edb92e;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title.type--global:after {
+  content: 'Global';
+  background-color: #edb92e;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title.type--module:after {
+  content: 'Module';
+  background-color: #f85931;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title.type--class:after {
+  content: 'Class';
+  background-color: #845bad;
+}
+
+.algolia-autocomplete .aa-suggestion .type__title.type--properties:after {
+  content: 'Property';
+  background-color: #6DC0D5;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--event:after {
+  content: 'Event';
+  background-color: #a3a948;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--var:after {
+  content: 'Variable';
+  background-color: #73B8A5;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--Number:after {
+  content: 'Number';
+  background-color: #50514F;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--Array:after {
+  content: 'Array';
+  background-color: #F4796B;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--Boolean:after {
+  content: 'Boolean';
+  background-color: #AEADF0;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--String:after {
+  content: 'String';
+  background-color: #F2B880;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--method:after {
+  content: 'Method';
+  background-color: #a3a948;
+}
+.algolia-autocomplete .aa-suggestion .type__title.type--classMethod:after {
+  content: 'Method';
+  background-color: #F5BB00;
+}
+
+.algolia-autocomplete .no-results {
+  font-weight: normal;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.algolia-autocomplete .footer {
+  background: url(/assets/algolia-logo.jpg) transparent no-repeat;
+  background-position: right 12px center;
+  background-size: 54px;
+  background-color: #FFF;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  position: relative;
+}
+
+.algolia-autocomplete .footer:before {
+  content: 'Powered By';
+  position: absolute;
+  right: 70px;
+  font-size: 13px;
+  top: 50%;
+  font-weight: normal;
+  margin-top: -8px;
+}
+
+@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  .algolia-autocomplete .footer {
+    background-image: url(/assets/algolia-logo-2x.jpg);
+  }
 }
 
 @media only screen and (max-width: 1024px) {
